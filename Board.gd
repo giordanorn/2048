@@ -11,6 +11,7 @@ const BOARD_HEIGHT = 4
 
 var board:Array
 
+
 func _ready() -> void:
 	board = BASE
 	spawn()
@@ -21,16 +22,45 @@ func _process(delta) -> void:
 	if Input.is_action_just_pressed("ui_left"):
 		for line in board:
 			slide_line(line)
+		spawn()
 		print_board()
 	elif Input.is_action_just_pressed("ui_up"):
-		pass
+		var aux_board = [[],[],[],[]]
+		for col in range(0, 4):
+			var line = []
+			for row in range(0, 4):
+				line.push_back(board[row][col])
+			slide_line(line)
+			aux_board[col] = line
+		
+		for col in range(0, 4):
+			for row in range(0, 4):
+				board[col][row] = aux_board[row][col]
+		spawn()
+		print_board()
 	elif Input.is_action_just_pressed("ui_right"):
 		for line in board:
 			line.invert()
 			slide_line(line)
 			line.invert()
+		spawn()
 		print_board()
 	elif Input.is_action_just_pressed("ui_down"):
+		var aux_board = [[],[],[],[]]
+		for col in range(0, 4):
+			var line = []
+			for row in range(0, 4):
+				line.push_back(board[row][col])
+			line.invert()
+			slide_line(line)
+			line.invert()
+			aux_board[col] = line
+		
+		for col in range(0, 4):
+			for row in range(0, 4):
+				board[col][row] = aux_board[row][col]
+		spawn()
+		print_board()
 		pass
 
 
@@ -48,7 +78,7 @@ func set_element(pos:Vector2, val:int) -> void:
 func slide_line(line:Array) -> void:
 	# Exemplos:
 	# [4,2,2,0] -> [4,4,0,0]
-	# [2,0,2,0] -> [2,2,0,0]
+	# [2,0,2,0] -> [4,0,0,0]
 	
 	var base = 0
 	
