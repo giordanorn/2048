@@ -15,6 +15,9 @@ const tile_scene = preload("res://Square.tscn")
 var graphical_nodes:Array = []
 
 
+signal onSlide()
+
+
 func _ready() -> void:
 	initialize_board()
 	initialize_grapical_board()
@@ -27,8 +30,7 @@ func _process(delta) -> void:
 	if Input.is_action_just_pressed("ui_left"):
 		for line in board:
 			slide_line(line)
-		spawn()
-		update_graphical_board()
+		complete_movement()
 	elif Input.is_action_just_pressed("ui_up"):
 		var aux_board = [[],[],[],[]]
 		for col in range(0, 4):
@@ -41,15 +43,13 @@ func _process(delta) -> void:
 		for col in range(0, 4):
 			for row in range(0, 4):
 				board[col][row] = aux_board[row][col]
-		spawn()
-		update_graphical_board()
+		complete_movement()
 	elif Input.is_action_just_pressed("ui_right"):
 		for line in board:
 			line.invert()
 			slide_line(line)
 			line.invert()
-		spawn()
-		update_graphical_board()
+		complete_movement()
 	elif Input.is_action_just_pressed("ui_down"):
 		var aux_board = [[],[],[],[]]
 		for col in range(0, 4):
@@ -64,8 +64,14 @@ func _process(delta) -> void:
 		for col in range(0, 4):
 			for row in range(0, 4):
 				board[col][row] = aux_board[row][col]
-		spawn()
-		update_graphical_board()
+		complete_movement()
+
+
+func complete_movement() -> void:
+	spawn()
+	update_graphical_board()
+	update_score()
+	emit_signal("onSlide")
 
 
 func get_element(pos:Vector2) -> int:
@@ -140,6 +146,10 @@ func get_score() -> int:
 	return sum
 
 
+func update_score() -> void:
+	Global.score = get_score()
+
+
 func spawn() -> void:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -165,7 +175,7 @@ func print_board() -> void:
 # Inicializa o board interno
 #
 func initialize_board() -> void:
-	board = BASE
+	board = BASE.duplicate(true)
 
 
 #
@@ -186,3 +196,8 @@ func update_graphical_board() -> void:
 	for i in range(0, BOARD_WIDTH * BOARD_HEIGHT):
 		graphical_nodes[BOARD_WIDTH * BOARD_HEIGHT - (i + 1)].set_value(board[floor(i / BOARD_WIDTH)][i % BOARD_HEIGHT])
 
+
+func _on_NewGame_button_up():
+	initialize_board()
+	spawn()
+	update_graphical_board()

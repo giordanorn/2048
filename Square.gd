@@ -27,9 +27,7 @@ func set_value(new_value:int) -> void:
 		
 		# Define a variante
 		var variant = floor((n - 1) / tones)
-		
 		var color = get_color_by_variant(variant)
-		
 		
 		# Define a entonação
 		color.r = color.r / (tone + 1)

@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Score.gd" type="Script" id=1]
+
+[node name="Score" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 100, 60 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.172549, 0.0823529, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="VBoxContainer" parent="Container"]
+margin_left = 491.0
+margin_top = 284.0
+margin_right = 532.0
+margin_bottom = 316.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placeholder" type="Label" parent="Container/Content"]
+margin_right = 41.0
+margin_bottom = 14.0
+text = "Score"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Container/Content"]
+margin_top = 18.0
+margin_right = 41.0
+margin_bottom = 32.0
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

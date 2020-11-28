@@ -2,17 +2,15 @@
 
 [ext_resource path="res://Board.gd" type="Script" id=1]
 
-[node name="Board" type="Panel"]
+[node name="Board" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+color = Color( 0.345098, 0.301961, 0.301961, 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Container" type="CenterContainer" parent="."]
 anchor_right = 1.0
