@@ -2,7 +2,7 @@ extends Control
 
 
 func _ready():
-	$CenterContainer/VBoxContainer/Label.text = str(0)
+	$CenterContainer/VBoxContainer/Label.text = str(Global.max_score)
 
 
 func _on_NewGame_button_up():

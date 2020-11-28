@@ -11,6 +11,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.345098, 0.301961, 0.301961, 1 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Container" type="CenterContainer" parent="."]
 anchor_right = 1.0

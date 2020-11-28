@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/OpenSans-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 1 )
+
+[node name="Exit" type="Button"]
+margin_top = 44.0
+margin_right = 100.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 100, 30 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.203922, 0.152941, 0.152941, 1 )
+text = "Exit"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

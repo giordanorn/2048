@@ -28,6 +28,9 @@ func _ready() -> void:
 
 func _process(delta) -> void:
 	if Global.game_over:
+		if Global.score > Global.max_score:
+			Global.max_score = Global.score
+		get_tree().change_scene("res://GameOver.tscn")
 		return
 		
 	if Input.is_action_just_pressed("ui_left"):
