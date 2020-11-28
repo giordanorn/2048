@@ -93,6 +93,6 @@ anchor_bottom = 0.0
 margin_top = 98.0
 margin_right = 944.0
 margin_bottom = 520.0
-[connection signal="button_up" from="MarginContainer/VBoxContainer/ActionContainer/NewGame" to="MarginContainer/VBoxContainer/Board" method="_on_NewGame_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/ActionContainer/NewGame" to="MarginContainer/VBoxContainer/ScoreContainer/MaxScore" method="_on_NewGame_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/ActionContainer/NewGame" to="MarginContainer/VBoxContainer/Board" method="_on_NewGame_button_up"]
 [connection signal="onSlide" from="MarginContainer/VBoxContainer/Board" to="MarginContainer/VBoxContainer/ScoreContainer/Score" method="_on_Board_onSlide"]

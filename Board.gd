@@ -27,6 +27,9 @@ func _ready() -> void:
 
 
 func _process(delta) -> void:
+	if Global.game_over:
+		return
+		
 	if Input.is_action_just_pressed("ui_left"):
 		for line in board:
 			slide_line(line)
@@ -151,24 +154,48 @@ func update_score() -> void:
 
 
 func spawn() -> void:
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	var pos = Vector2(rng.randi_range(0,3), rng.randi_range(0,3))
-	while (is_occupied(pos)):
-		pos = Vector2(rng.randi_range(0,3), rng.randi_range(0,3))
-	var spawned_value = 2
-	replace(pos, spawned_value)
+	if is_board_full():
+		var game_over = true
+			
+		# Checagem vertical
+		for i in range(1, BOARD_WIDTH):
+			for j in range(0, BOARD_HEIGHT):
+				if board[i-1][j] == board[i][j]:
+					game_over = false
+					break
+					
+		# Checagem horizontal
+		for i in range(0, BOARD_WIDTH):
+			for j in range(1, BOARD_HEIGHT):
+				if board[i][j - 1] == board[i][j]:
+					game_over = false
+					break
+					
+		if (game_over):
+			Global.game_over = true
+	else:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		var pos = Vector2(rng.randi_range(0,3), rng.randi_range(0,3))
+		var tries = [pos]
+		while (is_occupied(pos)):
+			while tries.has(pos):
+				pos = Vector2(rng.randi_range(0,3), rng.randi_range(0,3))
+			tries.push_back(pos)
+		var spawned_value = 2
+		replace(pos, spawned_value)
+
+
+func is_board_full() -> bool:
+	for line in board:
+		for number in line:
+			if number == 0:
+				return false
+	return true
 
 
 func is_occupied(pos:Vector2) -> bool:
 	return get_element(pos) > 0
-
-
-func print_board() -> void:
-	print ("Board:")
-	for line in board:
-		print (line)
-	print ("Score: ", get_score())
 
 
 #
@@ -201,3 +228,4 @@ func _on_NewGame_button_up():
 	initialize_board()
 	spawn()
 	update_graphical_board()
+	Global.game_over = false
