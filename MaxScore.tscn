@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MaxScore.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/OpenSans-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
 
 [node name="MaxScore" type="Control"]
 anchor_right = 1.0
@@ -23,21 +31,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 475.0
-margin_top = 284.0
-margin_right = 549.0
-margin_bottom = 316.0
+margin_left = 477.0
+margin_top = 278.0
+margin_right = 547.0
+margin_bottom = 322.0
 
 [node name="Placeholder" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 74.0
-margin_bottom = 14.0
+margin_right = 70.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 2 )
 text = "Max Score"
 align = 1
 uppercase = true
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 32.0
+margin_top = 21.0
+margin_right = 70.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1

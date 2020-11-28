@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Score.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/OpenSans-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
 
 [node name="Score" type="Control"]
 anchor_right = 1.0
@@ -27,18 +35,19 @@ __meta__ = {
 }
 
 [node name="Content" type="VBoxContainer" parent="Container"]
-margin_left = 491.0
-margin_top = 284.0
+margin_left = 492.0
+margin_top = 278.0
 margin_right = 532.0
-margin_bottom = 316.0
+margin_bottom = 322.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Placeholder" type="Label" parent="Container/Content"]
-margin_right = 41.0
-margin_bottom = 14.0
+margin_right = 40.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 1 )
 text = "Score"
 align = 1
 uppercase = true
@@ -47,9 +56,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Container/Content"]
-margin_top = 18.0
-margin_right = 41.0
-margin_bottom = 32.0
+margin_top = 21.0
+margin_right = 40.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 1
 __meta__ = {
