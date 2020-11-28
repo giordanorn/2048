@@ -2,5 +2,31 @@
 
 [ext_resource path="res://Board.gd" type="Script" id=1]
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grid" type="GridContainer" parent="Container"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}

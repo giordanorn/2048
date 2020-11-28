@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 const BASE = [[0, 0, 0, 0],
@@ -11,11 +11,16 @@ const BOARD_HEIGHT = 4
 
 var board:Array
 
+const tile_scene = preload("res://Square.tscn")
+var graphical_nodes:Array = []
+
 
 func _ready() -> void:
-	board = BASE
+	initialize_board()
+	initialize_grapical_board()
+	
 	spawn()
-	print_board()
+	update_graphical_board()
 
 
 func _process(delta) -> void:
@@ -23,7 +28,7 @@ func _process(delta) -> void:
 		for line in board:
 			slide_line(line)
 		spawn()
-		print_board()
+		update_graphical_board()
 	elif Input.is_action_just_pressed("ui_up"):
 		var aux_board = [[],[],[],[]]
 		for col in range(0, 4):
@@ -37,14 +42,14 @@ func _process(delta) -> void:
 			for row in range(0, 4):
 				board[col][row] = aux_board[row][col]
 		spawn()
-		print_board()
+		update_graphical_board()
 	elif Input.is_action_just_pressed("ui_right"):
 		for line in board:
 			line.invert()
 			slide_line(line)
 			line.invert()
 		spawn()
-		print_board()
+		update_graphical_board()
 	elif Input.is_action_just_pressed("ui_down"):
 		var aux_board = [[],[],[],[]]
 		for col in range(0, 4):
@@ -60,8 +65,7 @@ func _process(delta) -> void:
 			for row in range(0, 4):
 				board[col][row] = aux_board[row][col]
 		spawn()
-		print_board()
-		pass
+		update_graphical_board()
 
 
 func get_element(pos:Vector2) -> int:
@@ -155,4 +159,30 @@ func print_board() -> void:
 	for line in board:
 		print (line)
 	print ("Score: ", get_score())
+
+
+#
+# Inicializa o board interno
+#
+func initialize_board() -> void:
+	board = BASE
+
+
+#
+# Inicializa o board a ser exibido
+#
+func initialize_grapical_board() -> void:
+	for n in range (0, BOARD_WIDTH * BOARD_HEIGHT):
+		var node = tile_scene.instance()
+		node.set_value(0)
+		graphical_nodes.push_front(node)
+		$Container/Grid.add_child(node)
+
+
+#
+# Atualiza o board a ser exibido
+#
+func update_graphical_board() -> void:
+	for i in range(0, BOARD_WIDTH * BOARD_HEIGHT):
+		graphical_nodes[BOARD_WIDTH * BOARD_HEIGHT - (i + 1)].set_value(board[floor(i / BOARD_WIDTH)][i % BOARD_HEIGHT])
 
